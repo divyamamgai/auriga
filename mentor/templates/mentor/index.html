@@ -1,0 +1,28 @@
+{% extends 'mentor/_base.html' %}
+
+{% block title %}
+    Auriga - Mentor
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 text-center">
+                <h2>Welcome Mentor</h2>
+                <button class="popup-button" data-popup="sign-in">
+                    Sign In
+                </button>
+                <button class="popup-button" data-popup="sign-up">
+                    Sign Up
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 text-center">
+                <a class="footer-link" href="/mentee">I'm a mentee</a>
+            </div>
+        </div>
+    </div>
+    {% include 'mentor/popup/sign_in.html' %}
+    {% include 'mentor/popup/sign_up.html' %}
+{% endblock %}

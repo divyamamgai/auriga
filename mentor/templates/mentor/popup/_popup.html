@@ -1,0 +1,20 @@
+<div class="popup-container"
+     id="popup-{% block popup-id %}{% endblock %}">
+    <div class="popup">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <h2 class="popup-heading text-center">
+                        {% block popup-heading %}{% endblock %}
+                    </h2>
+                    <span class="fa fa-close popup-close-button"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 popup-content">
+                    {% block popup-content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

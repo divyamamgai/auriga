@@ -1,0 +1,18 @@
+{% extends 'mentee/_base.html' %}
+
+{% block title %}
+    Auriga - Mentee
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 text-center">
+                <h2>Welcome {{ full_name }}</h2>
+                <button id="get-mentees-button">Get Mentees</button>
+                <button id="logout-button">Logout</button>
+                <ul class="user-list" id="mentees-list"></ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
