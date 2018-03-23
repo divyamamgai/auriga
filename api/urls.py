@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from . import views
 
+app_name = 'api'
+
 urlpatterns = [
     url(r'auth/signup/$', views.auth_sign_up),
     url(r'auth/login/$', views.auth_login),

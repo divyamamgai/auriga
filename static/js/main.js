@@ -54,39 +54,74 @@
         },
         signInFormOnSubmit: function (event) {
             event.preventDefault();
-            fn.login($objects.signInForm.serialize());
+            var $submit = $('button[type=submit]', $objects.signInForm);
+            if (!$submit.hasClass('loading')) {
+                $submit.addClass('loading');
+                fn.login($objects.signInForm.serialize())
+                    .always(function () {
+                        $submit.removeClass('loading');
+                    });
+            }
         },
         signUpFormOnSubmit: function (event) {
             event.preventDefault();
-            $.post(API_URL + '/auth/signup/', $objects.signUpForm.serialize())
-                .done(function (data, status) {
-                    if (status === 'success') {
-                        fn.login($objects.signUpForm.serialize());
-                    }
-                })
-                .fail(fn.requestFailureHandler);
+            var $submit = $('button[type=submit]', $objects.signUpForm);
+            if (!$submit.hasClass('loading')) {
+                $submit.addClass('loading');
+                $.post(API_URL + '/auth/signup/', $objects.signUpForm.serialize())
+                    .done(function (data, status) {
+                        if (status === 'success') {
+                            fn.login($objects.signUpForm.serialize());
+                        }
+                    })
+                    .fail(fn.requestFailureHandler)
+                    .always(function () {
+                        $submit.removeClass('loading');
+                    });
+            }
         },
         getMentorsButtonOnClick: function (event) {
-            event.preventDefault();
-            fn.getMentors()
-                .done(function (data, status) {
-                    if (status === 'success') {
-                        fn.renderUserList($objects.mentorsList, data);
-                    }
-                });
+            if (!$objects.getMentorsButton.hasClass('loading')) {
+                $objects.getMentorsButton.addClass('loading');
+                fn.getMentors()
+                    .done(function (data, status) {
+                        if (status === 'success') {
+                            fn.renderUserList($objects.mentorsList, data);
+                        }
+                    })
+                    .always(function () {
+                        $objects.getMentorsButton.removeClass('loading');
+                    });
+            } else {
+                event.preventDefault();
+            }
         },
         getMenteesButtonOnClick: function (event) {
-            event.preventDefault();
-            fn.getMentees()
-                .done(function (data, status) {
-                    if (status === 'success') {
-                        fn.renderUserList($objects.menteesList, data);
-                    }
-                });
+            if ($objects.getMenteesButton.hasClass('loading')) {
+                $objects.getMenteesButton.addClass('loading');
+                fn.getMentees()
+                    .done(function (data, status) {
+                        if (status === 'success') {
+                            fn.renderUserList($objects.menteesList, data);
+                        }
+                    })
+                    .always(function () {
+                        $objects.getMenteesButton.removeClass('loading');
+                    });
+            } else {
+                event.preventDefault();
+            }
         },
         logoutButtonOnClick: function (event) {
-            event.preventDefault();
-            fn.logout();
+            if (!$objects.logoutButton.hasClass('loading')) {
+                $objects.logoutButton.addClass('loading');
+                fn.logout()
+                    .always(function () {
+                        $objects.logoutButton.removeClass('loading');
+                    });
+            } else {
+                event.preventDefault();
+            }
         }
     };
 

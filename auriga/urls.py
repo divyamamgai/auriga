@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+app_name = 'auriga'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
-    path('mentee/', include('mentee.urls')),
-    path('mentor/', include('mentor.urls')),
+    path('api/', include('api.urls', namespace='api_urls')),
+    path('mentee/', include('mentee.urls', namespace='mentee_urls')),
+    path('mentor/', include('mentor.urls', namespace='mentor_urls')),
 ]
